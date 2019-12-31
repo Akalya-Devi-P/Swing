@@ -1,0 +1,84 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.util.Scanner;
+public class Random extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textResult;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Random frame = new Random();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Random() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 368);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		textResult = new JTextField();
+		textResult.setBounds(184, 215, 137, 45);
+		contentPane.add(textResult);
+		textResult.setColumns(10);
+		
+		JLabel lblOtpGenerator = new JLabel("OTP Generator");
+		lblOtpGenerator.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOtpGenerator.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblOtpGenerator.setBounds(82, 10, 278, 56);
+		contentPane.add(lblOtpGenerator);
+		
+		JButton btnClickMeTo = new JButton("Touch me to get your OTP");
+		btnClickMeTo.setFont(new Font("Calibri", Font.BOLD, 18));
+		btnClickMeTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int num = (int)(10000 *  Math.random());
+				textResult.setText(String.valueOf(num));
+				
+//				Random ran = new Random();
+//				int num = ran.nextInt(1000);
+		
+			}
+		});
+		btnClickMeTo.setBounds(99, 107, 261, 50);
+		contentPane.add(btnClickMeTo);
+		
+		
+		
+		JLabel lblOtp = new JLabel("OTP");
+		lblOtp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOtp.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblOtp.setBounds(98, 216, 76, 45);
+		contentPane.add(lblOtp);
+	}
+
+}

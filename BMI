@@ -1,0 +1,126 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+
+public class BMI {
+
+	private JFrame frame;
+	private JTextField textHeight;
+	private JTextField textWeight;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					BMI window = new BMI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public BMI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 30));
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblBmiCalculator = new JLabel("BMI Calculator");
+		lblBmiCalculator.setForeground(new Color(0, 0, 128));
+		lblBmiCalculator.setBackground(new Color(192, 192, 192));
+		lblBmiCalculator.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBmiCalculator.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblBmiCalculator.setBounds(77, 27, 261, 41);
+		frame.getContentPane().add(lblBmiCalculator);
+		
+		JLabel lblHeightinch = new JLabel("Height (m)");
+		lblHeightinch.setForeground(new Color(0, 0, 0));
+		lblHeightinch.setLabelFor(frame);
+		lblHeightinch.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHeightinch.setFont(new Font("Calibri", Font.BOLD, 17));
+		lblHeightinch.setBounds(26, 107, 105, 41);
+		frame.getContentPane().add(lblHeightinch);
+		
+		textHeight = new JTextField();
+		textHeight.setBackground(new Color(255, 255, 255));
+		textHeight.setFont(new Font("Calibri", Font.BOLD, 15));
+		textHeight.setBounds(156, 107, 96, 29);
+		frame.getContentPane().add(textHeight);
+		textHeight.setColumns(10);
+		
+		JLabel lblWeightkg = new JLabel("Weight (Kg)");
+		lblWeightkg.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWeightkg.setForeground(Color.BLACK);
+		lblWeightkg.setFont(new Font("Calibri", Font.BOLD, 17));
+		lblWeightkg.setBounds(26, 170, 105, 41);
+		frame.getContentPane().add(lblWeightkg);
+		
+		textWeight = new JTextField();
+		textWeight.setFont(new Font("Calibri", Font.BOLD, 15));
+		textWeight.setColumns(10);
+		textWeight.setBounds(156, 170, 96, 29);
+		frame.getContentPane().add(textWeight);
+		
+		JTextArea txtrResults = new JTextArea();
+		txtrResults.setBackground(new Color(255, 255, 255));
+		txtrResults.setFont(new Font("Calibri", Font.PLAIN, 15));
+		txtrResults.setText("RESULTS:");
+		txtrResults.setBounds(27, 353, 356, 100);
+		
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBackground(new Color(0, 100, 0));
+		btnSubmit.setForeground(new Color(245, 245, 245));
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String height = textHeight.getText();
+				String weight = textWeight.getText();
+				float bmi = Float.parseFloat(weight)/(Float.parseFloat(height) * Float.parseFloat(height));
+				
+				if(bmi<18.5)
+					txtrResults.setText("Under Weight");
+				else if(bmi >=18.5 && bmi<24.9)
+					txtrResults.setText("Healthy");
+				else if(bmi >=25 && bmi<=30)
+					txtrResults.setText("Over Weight");
+				else if(bmi >=30)
+					txtrResults.setText("Obesity");
+				//txtrResults.setText(Weight);
+				//txtrResults.setText(String.valueOf(bmi));
+			}
+		});
+		btnSubmit.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		btnSubmit.setBounds(132, 248, 105, 41);
+		frame.getContentPane().add(btnSubmit);
+		
+		
+		frame.getContentPane().add(txtrResults);
+		frame.setBounds(100, 100, 450, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}

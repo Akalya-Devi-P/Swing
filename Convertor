@@ -1,0 +1,100 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Convertor extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textPound;
+	private JTextField textKg;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Convertor frame = new Convertor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Convertor() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setForeground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(192, 192, 192));
+		contentPane.setToolTipText("");
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblConvertor = new JLabel("Convertor");
+		lblConvertor.setBackground(new Color(0, 128, 0));
+		lblConvertor.setForeground(new Color(0, 0, 128));
+		lblConvertor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConvertor.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblConvertor.setBounds(146, 30, 159, 47);
+		contentPane.add(lblConvertor);
+		
+		JLabel lblNewLabel = new JLabel("Pound (lbs)");
+		lblNewLabel.setBackground(new Color(176, 224, 230));
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 17));
+		lblNewLabel.setBounds(41, 86, 96, 40);
+		contentPane.add(lblNewLabel);
+		
+		textPound = new JTextField();
+		textPound.setToolTipText("Enter Data");
+		textPound.setBounds(156, 87, 85, 34);
+		contentPane.add(textPound);
+		textPound.setColumns(10);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setToolTipText("Click to get the answer");
+		btnSubmit.setForeground(new Color(255, 255, 255));
+		btnSubmit.setBackground(new Color(100, 149, 237));
+		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pounds = textPound.getText();
+				double kg = Double.parseDouble(pounds)*0.4536; 
+				textKg.setText(Double.toString(kg));
+			}
+		});
+		btnSubmit.setBounds(175, 193, 85, 21);
+		contentPane.add(btnSubmit);
+		
+		JLabel lblKilogramskg = new JLabel("Kilogram (kg)");
+		lblKilogramskg.setBackground(new Color(135, 206, 235));
+		lblKilogramskg.setFont(new Font("Calibri", Font.BOLD, 17));
+		lblKilogramskg.setBounds(41, 136, 96, 40);
+		contentPane.add(lblKilogramskg);
+		
+		textKg = new JTextField();
+		textKg.setToolTipText("Answer");
+		textKg.setColumns(10);
+		textKg.setBounds(156, 137, 85, 34);
+		contentPane.add(textKg);
+	}
+
+}

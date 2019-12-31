@@ -1,0 +1,121 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JTextArea;
+
+public class Degree_convertor extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textCelsius;
+	private JTextField textFahrenheit;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Degree_convertor frame = new Degree_convertor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Degree_convertor() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 489);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblTemperatureConvertor = new JLabel("Convertor");
+		lblTemperatureConvertor.setForeground(new Color(128, 0, 0));
+		lblTemperatureConvertor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTemperatureConvertor.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblTemperatureConvertor.setBounds(129, 10, 182, 69);
+		contentPane.add(lblTemperatureConvertor);
+		
+		JLabel lblCelsius = new JLabel("Celsius");
+		lblCelsius.setFont(new Font("Calibri", Font.BOLD, 22));
+		lblCelsius.setBounds(101, 89, 73, 55);
+		contentPane.add(lblCelsius);
+		
+		textCelsius = new JTextField();
+		textCelsius.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		textCelsius.setBounds(215, 94, 96, 39);
+		contentPane.add(textCelsius);
+		textCelsius.setColumns(10);
+		
+		JTextArea textCalc = new JTextArea();
+		textCalc.setBounds(193, 354, 182, 55);
+		contentPane.add(textCalc);
+		
+		JButton btnToFahrenheit = new JButton("To Fahrenheit");
+		btnToFahrenheit.setForeground(new Color(255, 255, 255));
+		btnToFahrenheit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cel = textCelsius.getText();
+				double fah = Double.parseDouble(cel) * 9 / 5.0 +32;
+				textFahrenheit.setText(Double.toString(fah));
+				textCalc.setText(cel + "°C ×9/5+32\n=  " + fah +" °F" );
+			}
+		});
+		btnToFahrenheit.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		btnToFahrenheit.setBackground(new Color(128, 0, 0));
+		btnToFahrenheit.setBounds(145, 178, 155, 36);
+		contentPane.add(btnToFahrenheit);
+		
+		JLabel lblCalculation = new JLabel("Calculation");
+		lblCalculation.setFont(new Font("Calibri", Font.BOLD, 22));
+		lblCalculation.setBounds(43, 354, 131, 55);
+		contentPane.add(lblCalculation);
+		
+		
+		
+		JLabel lblC = new JLabel("\u00B0C");
+		lblC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblC.setFont(new Font("Calibri", Font.BOLD, 22));
+		lblC.setBounds(329, 89, 28, 55);
+		contentPane.add(lblC);
+		
+		JLabel lblFahrenheit = new JLabel("Fahrenheit");
+		lblFahrenheit.setFont(new Font("Calibri", Font.BOLD, 22));
+		lblFahrenheit.setBounds(101, 243, 73, 55);
+		contentPane.add(lblFahrenheit);
+		
+		textFahrenheit = new JTextField();
+		textFahrenheit.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		textFahrenheit.setColumns(10);
+		textFahrenheit.setBounds(215, 248, 96, 39);
+		contentPane.add(textFahrenheit);
+		
+		JLabel lblf = new JLabel("\u00B0F");
+		lblf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblf.setFont(new Font("Calibri", Font.BOLD, 22));
+		lblf.setBounds(329, 243, 28, 55);
+		contentPane.add(lblf);
+	}
+
+}
+
+
+

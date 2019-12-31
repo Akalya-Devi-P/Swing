@@ -1,0 +1,129 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+
+public class PrimeNumberGenerator extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textLower;
+	private JTextField textUpper;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PrimeNumberGenerator frame = new PrimeNumberGenerator();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public PrimeNumberGenerator() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 635, 454);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 228, 196));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblPrimeNumberGenerator = new JLabel("Prime number generator");
+		lblPrimeNumberGenerator.setForeground(new Color(128, 0, 0));
+		lblPrimeNumberGenerator.setBackground(new Color(255, 0, 255));
+		lblPrimeNumberGenerator.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblPrimeNumberGenerator.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrimeNumberGenerator.setBounds(0, 5, 616, 56);
+		contentPane.add(lblPrimeNumberGenerator);
+		
+		JLabel lblUpperLimit = new JLabel("Lower Limit");
+		lblUpperLimit.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblUpperLimit.setBounds(69, 117, 109, 38);
+		contentPane.add(lblUpperLimit);
+		
+		textLower = new JTextField();
+		textLower.setFont(new Font("Calibri", Font.BOLD, 20));
+		textLower.setBounds(232, 117, 96, 38);
+		contentPane.add(textLower);
+		textLower.setColumns(10);
+		
+		JLabel label = new JLabel("Upper Limit");
+		label.setFont(new Font("Calibri", Font.BOLD, 20));
+		label.setBounds(69, 189, 109, 38);
+		contentPane.add(label);
+		
+		textUpper = new JTextField();
+		textUpper.setFont(new Font("Calibri", Font.BOLD, 20));
+		textUpper.setColumns(10);
+		textUpper.setBounds(232, 189, 96, 38);
+		contentPane.add(textUpper);
+		
+		JTextArea textResult = new JTextArea();
+		textResult.setFont(new Font("Calibri", Font.BOLD, 15));
+		textResult.setToolTipText("Prime numbers");
+		textResult.setBounds(232, 300, 346, 107);
+		contentPane.add(textResult);
+		textResult.setLineWrap(true);
+		
+		JButton btnPrint = new JButton("Print");
+		btnPrint.setForeground(new Color(255, 255, 255));
+		btnPrint.setBackground(new Color(160, 82, 45));
+		btnPrint.setToolTipText("Click to get prime numbers between the given range");
+		btnPrint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String l = textLower.getText();
+				String h = textUpper.getText();
+				int low = Integer.parseInt(l);
+				int high = Integer.parseInt(h);
+				
+				while (low <= high) 
+				{
+		            boolean flag = false;
+		            for(int i = 2; i <= low/2; ++i) 
+		            {		               
+		                if(low % i == 0) 
+		                {
+		                    flag = true;
+		                    break;
+		                }
+		            }
+		            if (!flag)
+		            	textResult.append(low + "  ");
+		            	//textResult.setText(low + " ");
+		            ++low;
+		        }
+			}
+		});
+		btnPrint.setFont(new Font("Calibri", Font.BOLD, 23));
+		btnPrint.setBounds(446, 139, 85, 56);
+		contentPane.add(btnPrint);
+		
+		JLabel lblPrimeNumbers = new JLabel("Prime Numbers");
+		lblPrimeNumbers.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblPrimeNumbers.setBounds(69, 300, 139, 38);
+		contentPane.add(lblPrimeNumbers);
+		
+		
+	}
+
+}
